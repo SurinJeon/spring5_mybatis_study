@@ -1,0 +1,60 @@
+{
+	"folders": {},
+	"connections": {
+		"mysql5-179551ba100-2e25916cf356d8f7": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "localhost(root)",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"url": "jdbc:mysql://localhost:3306/",
+				"home": "C:\\Program Files\\MySQL\\MySQL Server 5.7",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		},
+		"mysql5-1795521092c-494dbadb2dfbb3fc": {
+			"provider": "mysql",
+			"driver": "mysql5",
+			"name": "mybatis_study(user_mybatis_study)",
+			"save-password": true,
+			"read-only": false,
+			"configuration": {
+				"host": "localhost",
+				"port": "3306",
+				"database": "mybatis_study",
+				"url": "jdbc:mysql://localhost:3306/mybatis_study",
+				"home": "C:\\Program Files\\MySQL\\MySQL Server 5.7",
+				"type": "dev",
+				"auth-model": "native",
+				"handlers": {}
+			}
+		}
+	},
+	"virtual-models": {
+		"mysql5-1795521092c-494dbadb2dfbb3fc": {
+			"mybatis_study": {
+				"@properties": {
+					"erd.diagram.state": {
+						"serialized": "<diagram version=\"1\" name=\"mybatis_study\" time=\"202105101624\"><entities><data-source id=\"mysql5-1795521092c-494dbadb2dfbb3fc\"><entity id=\"1\" name=\"addresses\" fq-name=\"mybatis_study.addresses\" order=\"0\" x=\"479\" y=\"415\"><path name=\"mybatis_study\"/></entity><entity id=\"2\" name=\"course_enrollment\" fq-name=\"mybatis_study.course_enrollment\" order=\"1\" x=\"76\" y=\"316\"><path name=\"mybatis_study\"/></entity><entity id=\"3\" name=\"courses\" fq-name=\"mybatis_study.courses\" order=\"2\" x=\"287\" y=\"122\"><path name=\"mybatis_study\"/></entity><entity id=\"4\" name=\"students\" fq-name=\"mybatis_study.students\" order=\"3\" x=\"293\" y=\"397\"><path name=\"mybatis_study\"/></entity><entity id=\"5\" name=\"tutors\" fq-name=\"mybatis_study.tutors\" order=\"4\" x=\"482\" y=\"117\"><path name=\"mybatis_study\"/></entity></data-source></entities><relations><relation name=\"fk_students_addr\" fq-name=\"mybatis_study.students.fk_students_addr\" type=\"fk\" pk-ref=\"1\" fk-ref=\"4\"/><relation name=\"fk_tutors_addr\" fq-name=\"mybatis_study.tutors.fk_tutors_addr\" type=\"fk\" pk-ref=\"1\" fk-ref=\"5\"/><relation name=\"fk_enrollment_course\" fq-name=\"mybatis_study.course_enrollment.fk_enrollment_course\" type=\"fk\" pk-ref=\"3\" fk-ref=\"2\"/><relation name=\"fk_enrollment_stud\" fq-name=\"mybatis_study.course_enrollment.fk_enrollment_stud\" type=\"fk\" pk-ref=\"4\" fk-ref=\"2\"/><relation name=\"fk_course_tutor\" fq-name=\"mybatis_study.courses.fk_course_tutor\" type=\"fk\" pk-ref=\"5\" fk-ref=\"3\"/></relations></diagram>"
+					}
+				}
+			}
+		}
+	},
+	"connection-types": {
+		"dev": {
+			"name": "Development",
+			"color": "255,255,255",
+			"description": "Regular development database",
+			"auto-commit": true,
+			"confirm-execute": false,
+			"confirm-data-change": false,
+			"auto-close-transactions": false
+		}
+	}
+}
