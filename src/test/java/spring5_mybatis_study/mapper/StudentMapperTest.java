@@ -107,6 +107,18 @@ public class StudentMapperTest {
 	}
 	
 	@Test
+	public void test08selectStudentByIdAssociation() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()"); // method 이름 출력문
+		
+		Student student = new Student();
+		student.setStudId(1); // id가 1인거 찾기
+		Student selectStudent = mapper.selectStudentByIdAssociation(student);
+		
+		log.debug(selectStudent.toString());
+		Assert.assertNotNull(selectStudent);
+	}
+	
+	@Test
 	public void test04insertStudent() {
 		Calendar newDate = GregorianCalendar.getInstance();
 		newDate.set(1995, 10, 1);

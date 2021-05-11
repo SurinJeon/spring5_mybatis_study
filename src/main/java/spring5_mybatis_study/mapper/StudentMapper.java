@@ -24,4 +24,7 @@ public interface StudentMapper {
 	int updateStudent(Student student);
 	
 	
+	// 내포된 결과 매핑(Resultmap)을 사용한 일대일 매핑
+	Student selectStudentByIdAssociation(Student student);
+	
 }
