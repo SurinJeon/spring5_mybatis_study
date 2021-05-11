@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-public class MyBatisSqlSession {
+public class ContextSqlSession {
 
 	@Autowired
 	ApplicationContext applicationContext;

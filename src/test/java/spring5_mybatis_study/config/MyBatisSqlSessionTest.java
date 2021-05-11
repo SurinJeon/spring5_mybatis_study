@@ -13,7 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ControllerConfig.class) // ContextDataSource를 가지고 와서 MyBatisSqlSession를 만드는 것이기 때문에 둘 다 필요
+@ContextConfiguration(classes = ContextRoot.class) // ContextDataSource를 가지고 와서 MyBatisSqlSession를 만드는 것이기 때문에 둘 다 필요
 public class MyBatisSqlSessionTest {
 	private static final Log log = LogFactory.getLog(MyBatisSqlSessionTest.class);
 
