@@ -12,6 +12,16 @@
 		</if>
 	</where>
 </sql>
+<sql id="where_name_email">
+	<where>
+		<if test="name != null">
+			name = #{name}
+		</if>
+		<if test="email != null">
+			AND email = #{email} <!-- 이 조건이 처음오게 된다면 AND는 자동으로 사라짐  -->
+		</if>
+	</where>
+</sql>
 <select id="selectStudentById" parameterType="Student" resultType="Student">
 	<include refid="selectSQL"/>
 	<include refid="whereSQL"/>
@@ -82,6 +92,21 @@
  	<include refid="whereSQL"></include>
 </select>
 
+<select id="selectStudentByMap" parameterType="map" resultMap="StudentResult">
+	<include refid="selectSQL"/>
+	<include refid="where_name_email"/>
+</select>
+
+<select id="selectAllStudentByMap" parameterType="map" resultMap="StudentResult">
+	<include refid="selectSQL" />
+	<include refid="where_name_email"/>
+</select>
+
+<!--ResultSet 처리방식 p150  -->
+<select id="selectStudentForMap" parameterType="int" resultMap="StudentResult">
+	<include refid="selectSQL"/>
+	<include refid="whereSQL"/>
+</select>
 </mapper>
 
 

@@ -27,4 +27,6 @@ select t.tutor_id, t.name as tutor_name, email, c.course_id , c.name , descripti
 
 delete from students where stud_id > 2;
 delete from user_pics where id = 2;
+update students set name = 'Timothy' where stud_id = 1;
 
+select stud_id, name, email, phone, dob from students WHERE name = 'Timothy' AND email = 'timothy@gmail.com'

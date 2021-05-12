@@ -29,4 +29,12 @@ public interface StudentMapper {
 	
 	// enum타입 다루기
 	int insertEnumStudent(Student student);
+	
+	// 여러 개의 입력 파라미터 전달
+	Student selectStudentByMap(Map<String, String> map);
+	List<Student> selectAllStudentByMap(Map<String, String> map);
+	
+	// ResultSet 처리방식의 재정의 p150
+	Map<Integer, Student> selectStudentForMap(Student student);
+	
 }
