@@ -43,6 +43,12 @@
 	values(#{studId}, #{name}, #{email}, #{phone}, #{dob})
 </insert>
 
+<!-- enum 타입 다루기 -->
+<insert id="insertEnumStudent" parameterType="Student">
+	insert into students(stud_id, name, email,phone, dob, gender) 
+	values(#{studId}, #{name}, #{email}, #{phone}, #{dob}, #{gender})
+</insert>
+
 <delete id="deleteStudent">
 	delete 
   	  from students
@@ -75,6 +81,7 @@
   	    on s.addr_id = a.addr_id
  	<include refid="whereSQL"></include>
 </select>
+
 </mapper>
 
 

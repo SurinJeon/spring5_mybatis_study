@@ -14,6 +14,7 @@ public class Student {
 	private PhoneNumber phone;
 	private Date dob;
 	private Address address;
+	private Gender gender; // p126 enum 만들고 추가한 field
 	
 	public int getStudId() {
 		return studId;
@@ -63,10 +64,18 @@ public class Student {
 		this.address = address;
 	}
 
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
 	@Override
 	public String toString() {
-		return String.format("Student [%s, %s, %s, %s, %s, %s]", studId, name, email, phone,
-				dob, address);
+		return String.format("Student [%s, %s, %s, %s, %s, %s, %s]", studId,
+				name, email, phone, dob, address, gender == Gender.FEMALE ? "여자" : "남자");
 	}
 
 }

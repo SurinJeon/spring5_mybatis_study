@@ -53,4 +53,14 @@ stud_id int(11) not null comment '학생코드',
 primary key (course_id,stud_id),
 constraint fk_enrollment_stud foreign key (stud_id) references students (stud_id),
 constraint fk_enrollment_course foreign key (course_id) references courses (course_id)
-);
+) comment '수강등록';
+
+alter table students add gender tinyint unsigned; /* p126하면서 추가함 */
+
+create table user_pics(
+	id int(11) not null auto_increment comment 'id',
+	name varchar(50) not null comment 'name',
+	pic longblob comment 'pic',
+	bio longtext collate utf8_unicode_ci comment 'bio', /*utf 저거는 이모티콘*/
+	primary key(id)
+) /* p133 하면서 추가함 */
