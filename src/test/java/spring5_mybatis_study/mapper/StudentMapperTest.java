@@ -1,6 +1,7 @@
 package spring5_mybatis_study.mapper;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -246,5 +247,23 @@ public class StudentMapperTest {
 		maps.clear();
 		list = mapper.selectAllStudentByMap(maps);
 		list.stream().forEach(s -> log.debug(s.toString()));
+	}
+	
+	@Test
+	public void test11updateSetStudent() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		Student student = new Student();
+		student.setStudId(1);
+		student.setPhone(new PhoneNumber("654-987-3214"));
+		student.setDob(new Date());
+		
+		int res = mapper.updateSetStudent(student);
+		Assert.assertEquals(1, res);
+		
+		student.setPhone(new PhoneNumber("123-123-1234"));
+		student.setDob(new GregorianCalendar(1988, 04, 25).getTime());
+		
+		res = mapper.updateSetStudent(student);
+		Assert.assertEquals(1, res);
 	}
 }

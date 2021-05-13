@@ -11,6 +11,18 @@ public class Course {
 	private Date endDate;
 	private int tutorId;
 
+	public Course() {
+	}
+
+	public Course(int courseId, String name, String description, Date startDate, Date endDate, int tutorId) {
+		this.courseId = courseId;
+		this.name = name;
+		this.description = description;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.tutorId = tutorId;
+	}
+
 	public int getCourseId() {
 		return courseId;
 	}
@@ -57,6 +69,28 @@ public class Course {
 
 	public void setTutorId(int tutorId) {
 		this.tutorId = tutorId;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + courseId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Course other = (Course) obj;
+		if (courseId != other.courseId)
+			return false;
+		return true;
 	}
 
 	@Override

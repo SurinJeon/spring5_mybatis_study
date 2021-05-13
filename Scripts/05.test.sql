@@ -55,3 +55,7 @@ select course_id, name, description, start_date, end_date, tutor_id
 select course_id, name, description, start_date, end_date, tutor_id
   from courses
  where start_date >= '20130201' and end_date <= '20130830';
+ 
+select course_id, name, description, start_date, end_date, tutor_id from courses;
+
+update courses set name = 'Javascript' where course_id = 4;

@@ -37,4 +37,6 @@ public interface StudentMapper {
 	// ResultSet 처리방식의 재정의 p150
 	Map<Integer, Student> selectStudentForMap(Student student);
 	
+	// update p185
+	int updateSetStudent(Student student);
 }

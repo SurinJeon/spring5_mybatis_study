@@ -73,6 +73,58 @@
 		<include refid="selectSQL"/>
 		<include refid="whereSQLWithCDATA"/>
 	</select>
+	
+	<select id="selectTrimCourses" parameterType="map" resultMap="ResCourse">
+		<include refid="selectSQL"/>
+		<trim prefix="WHERE" prefixOverrides="AND|OR">
+			<if test="tutorId != null">
+				tutor_id = #{tutorId} <!--알아서 where tutor_id = ?  -->
+			</if>
+			
+			<if test="courseName != null">
+				AND name like #{courseName} <!-- 알아서 and제거하고 where 붙이기가 가능  -->
+			</if>
+		</trim>
+	</select>
+	
+	<select id="selectCoursesForeachByTutors" parameterType="map" resultType="Course">
+		<include refid="selectSQL"/>
+		<if test="tutorIds != null">
+			<where>
+				tutor_id IN
+				<foreach item="tutorId" collection="tutorIds" index="index"
+					open="(" close=")" separator=",">
+					#{tutorId}
+				</foreach> <!-- foreach 돌려서 in (  ,   ,   ) 이렇게 조건절 다는 것 -->
+			</where>
+		</if>
+	</select>
+	
+	<insert id="insertCourses" parameterType="map">
+		insert into courses(course_id, name, description, start_date, end_date, tutor_id) values
+		<foreach item="item" collection="tutors" separator=" ," index="index">
+			(#{item.courseId}, #{item.name}, #{item.description}, #{item.startDate}, #{item.endDate}, #{item.tutorId})
+		</foreach>
+	</insert>
+	
+	<delete id="deleteCourses" parameterType="map">
+		delete from courses where course_id in
+		<foreach item="courseId" collection="courseIds" index="index" open="(" close=")" separator=",">
+			#{courseId}
+		</foreach>
+	</delete>
+	
+	<update id="updateSetCourse" parameterType="Course">
+		update courses
+		<set>
+			<if test="name != null">name=#{name},</if>
+			<if test="description != null">description=#{description},</if>
+			<if test="startDate != null">start_date=#{startDate},</if> 
+ 			<if test="endDate != null">end_date=#{endDate},</if> 
+			<if test="tutorId != null">tutor_id=#{tutorId},</if> 
+		</set>
+	   	 where course_Id = #{courseId}
+	</update>
 </mapper>
 
 

@@ -14,4 +14,19 @@ public interface CourseMapper {
 	
 	// where문
 	List<Course> selectWhereCourses(Map<String, Object> map);
+	
+	// trim
+	List<Course> selectTrimCourses(Map<String, Object> map);
+	
+	// select by foreach loop
+	List<Course> selectCoursesForeachByTutors(Map<String, Object> map);
+	
+	// insert by foreach
+	int insertCourses(Map<String, Object> map);
+	
+	// delete by foreach
+	int deleteCourses(Map<String, Object> map);
+	
+	// update by foreach
+	int updateSetCourse(Course course);
 }
