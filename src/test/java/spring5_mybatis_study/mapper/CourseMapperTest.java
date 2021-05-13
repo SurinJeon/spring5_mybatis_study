@@ -1,5 +1,6 @@
 package spring5_mybatis_study.mapper;
 
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
@@ -88,4 +89,80 @@ public class CourseMapperTest {
 		
 	}
 
+	@Test
+	public void test04SelectCaseCourses() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()"); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchBy", "Tutor");
+		map.put("tutorId", 1);
+		
+		List<Course> list = mapper.selectCaseCourses(map);
+		Assert.assertNotNull(list);
+		list.stream().forEach(c -> log.debug(c.toString()));
+		
+		map.replace("searchBy", "CourseName");
+		map.remove("tutorId");
+		map.put("courseName", "%JAVA%");
+		list = mapper.selectCaseCourses(map);
+		
+		Assert.assertNotNull(list);
+		list.stream().forEach(c -> log.debug(c.toString()));
+	
+	}
+	
+	@Test
+	public void test05SelectWhereCourses() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()"); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<Course> list = mapper.selectWhereCourses(map);
+		Assert.assertNotNull(list);
+		list.stream().forEach(c -> log.debug(c.toString()));
+		
+		map.put("tutorId", 1);
+		list = mapper.selectWhereCourses(map);
+		list.stream().forEach(c -> log.debug(c.toString()));
+		
+		map.put("courseName", "%JAVA%");
+		list = mapper.selectWhereCourses(map);
+		list.stream().forEach(c -> log.debug(c.toString()));
+		
+		map.clear();
+		map.put("endDate", new Date());
+		list = mapper.selectWhereCourses(map);
+		list.stream().forEach(c -> log.debug(c.toString()));
+	
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

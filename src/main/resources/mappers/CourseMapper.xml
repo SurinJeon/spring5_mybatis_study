@@ -37,13 +37,13 @@
 				<![CDATA[ AND tutor_id = #{tutorId} ]]>
 			</if>
 			<if test="courseName != null">
-				<![CDATA[ AND course_name like #{courseName} ]]>
+				<![CDATA[ AND name like #{courseName} ]]>
 			</if>
 			<if test="startDate != null">
-				<![CDATA[ AND start_date &gt;= #{startDate} ]]>
+				<![CDATA[ AND start_date >= #{startDate} ]]>
 			</if>
 			<if test="endDate != null">
-				<![CDATA[ AND end_date &lt;= #{endDate} ]]>
+				<![CDATA[ AND end_date <= #{endDate} ]]>
 			</if>
 		</where>
 	</sql>	
@@ -52,4 +52,50 @@
 		<include refid="selectSQL"/>
 		<include refid="whereSQL"/>
 	</select>
+	
+												<!-- 이번에는 resultType Course로 해보기  -->
+	<select id="selectCaseCourses" parameterType="map" resultType="Course">
+		<include refid="selectSQL"/>
+		<choose>
+			<when test="searchBy == 'Tutor'">
+				where tutor_id = #{tutorId}
+			</when>
+			<when test="searchBy == 'CourseName'">
+				where name like #{courseName}
+			</when>
+			<otherwise>
+				where end_date &gt; = now();
+			</otherwise>
+		</choose>
+	</select>
+	
+	<select id="selectWhereCourses" parameterType="map" resultType="Course">
+		<include refid="selectSQL"/>
+		<include refid="whereSQLWithCDATA"/>
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
