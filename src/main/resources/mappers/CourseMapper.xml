@@ -8,4 +8,48 @@
 		<result property="startDate" column="start_date"/>
 		<result property="endDate" column="end_date"/>
 	</resultMap>
+	
+	<sql id="selectSQL">
+		select course_id, name, description, start_date, end_date, tutor_id
+		  from courses
+	</sql>
+	
+	<sql id="whereSQL">
+		<where>
+			<if test="tutorId != null">
+				AND tutor_id = #{tutorId} <!-- mybatis가 and나 or같은 것도 알아서 상황 맞춰서 생략해서 가져옴 -->
+			</if>
+			<if test="courseName != null">
+				AND name like #{courseName}
+			</if>
+			<if test="startDate != null">
+				AND start_date &gt;= #{startDate}
+			</if>
+			<if test="endDate != null">
+				AND end_date &lt;= #{endDate}
+			</if>
+		</where>
+	</sql>
+
+	<sql id="whereSQLWithCDATA">
+		<where>
+			<if test="tutorId != null">
+				<![CDATA[ AND tutor_id = #{tutorId} ]]>
+			</if>
+			<if test="courseName != null">
+				<![CDATA[ AND course_name like #{courseName} ]]>
+			</if>
+			<if test="startDate != null">
+				<![CDATA[ AND start_date &gt;= #{startDate} ]]>
+			</if>
+			<if test="endDate != null">
+				<![CDATA[ AND end_date &lt;= #{endDate} ]]>
+			</if>
+		</where>
+	</sql>	
+	
+	<select id="selectCoursesByCondition" parameterType="map" resultMap="ResCourse">
+		<include refid="selectSQL"/>
+		<include refid="whereSQL"/>
+	</select>
 </mapper>

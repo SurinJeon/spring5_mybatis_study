@@ -30,3 +30,28 @@ delete from user_pics where id = 2;
 update students set name = 'Timothy' where stud_id = 1;
 
 select stud_id, name, email, phone, dob from students WHERE name = 'Timothy' AND email = 'timothy@gmail.com'
+
+/* p160 if 조건 << 이 모든걸 하나의 sql문으로 하자! */
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where course_id = 1;
+ 
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where name like '%JAVA%';
+ 
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where tutor_id = 1;
+ 
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where start_date >= '20130201';
+ 
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where end_date <= '20130830';
+ 
+select course_id, name, description, start_date, end_date, tutor_id
+  from courses
+ where start_date >= '20130201' and end_date <= '20130830';
