@@ -125,6 +125,24 @@
 		</set>
 	   	 where course_Id = #{courseId}
 	</update>
+	
+	<!-- transaction -->
+	<select id="selectCourseById" resultType="Course">
+		select course_id, name, description, start_date, end_date, tutor_id
+		  from courses
+		 where course_id = #{courseId}
+	</select>
+	
+	<insert id="insertCourse">
+		insert into courses(course_id, name, description, start_date, end_date, tutor_id)
+		values (#{courseId}, #{name}, #{description}, #{startDate}, #{endDate}, #{tutorId})
+	</insert>
+	
+	<delete id="deleteCourse">
+		delete
+		  from courses
+		 where course_id = #{courseId}
+	</delete>
 </mapper>
 
 

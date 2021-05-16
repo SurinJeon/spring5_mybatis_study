@@ -18,7 +18,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import spring5_mybatis_study.config.ContextRoot;
+import spring5_mybatis_study.dto.Address;
 import spring5_mybatis_study.dto.Course;
+import spring5_mybatis_study.dto.PhoneNumber;
 import spring5_mybatis_study.dto.Tutor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,7 +50,7 @@ public class TutorMapperTest {
 	}
 
 	@Test
-	public void testSelectTutorByTutorId() {
+	public void test01SelectTutorByTutorId() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
 		Tutor findTutor = new Tutor();
@@ -62,6 +64,24 @@ public class TutorMapperTest {
 		Assert.assertNotNull(list);
 		list.stream().forEach(t->log.debug(t.toString()));
 		
+	}
+	
+	@Test
+	public void test02InsertTutorAndDeleteTutor() {
+		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
+		
+		Address address = new Address();
+		address.setAddrId(2);
+		PhoneNumber phone = new PhoneNumber("010-2222-2222");
+		Tutor tutor = new Tutor(5, "mskim", "net94@naver.com", phone, address);
+		int res = mapper.insertTutor(tutor); // tutor 추가함
+		
+		Tutor findTutor = mapper.selectTutorById(tutor);
+		log.debug(findTutor.toString());
+		
+		res += mapper.deleteTutor(tutor.getTutorId());
+		
+		Assert.assertEquals(2, res);
 	}
 
 }

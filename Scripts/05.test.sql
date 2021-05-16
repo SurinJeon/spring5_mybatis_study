@@ -59,3 +59,5 @@ select course_id, name, description, start_date, end_date, tutor_id
 select course_id, name, description, start_date, end_date, tutor_id from courses;
 
 update courses set name = 'Javascript' where course_id = 4;
+
+delete from tutors where tutor_id=5;

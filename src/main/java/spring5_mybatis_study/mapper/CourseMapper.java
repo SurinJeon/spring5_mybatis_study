@@ -29,4 +29,9 @@ public interface CourseMapper {
 	
 	// update by foreach
 	int updateSetCourse(Course course);
+	
+	// transaction
+	int insertCourse(Course course);
+	int deleteCourse(int courseId);
+	Course selectCourseById(Course course);
 }

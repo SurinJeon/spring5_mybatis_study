@@ -48,7 +48,7 @@ public class StudentServiceTest {
 	}
 
 	@Test
-	public void testSelectStudentForMap() {
+	public void testSelectStudentForMap1() {
 		log.debug(Thread.currentThread().getStackTrace()[1].getMethodName() + "()");
 		
 		Map<Integer, String> map = service.selectStudentForMap(1);
